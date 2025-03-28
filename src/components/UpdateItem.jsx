@@ -1,15 +1,14 @@
 import axios from 'axios'
 import React,{useState,useEffect} from 'react'
-import { useParams } from 'react-router-dom'
 import App from '../App'
 
-function UpdateItem({id}) {
+function UpdateItem({id,x}) {
 
     const[Data,setData]=useState({
         name:"",
         status:""
     })
-    const [change,setChange]=useState(true)
+   
 
     useEffect(()=>{
 
@@ -38,8 +37,8 @@ function UpdateItem({id}) {
             await axios.put('http://localhost:8000/doors/'+id,Data)
                 setData({name:'',status:''})
                 alert('Data updated')
-                setChange(!change)
-                {<App  change={change}/>}
+                x[0](!x[1])
+                // {<App  change={change}/>}
                 } catch (error) {
                     console.log(error)
                     alert('Data not update')

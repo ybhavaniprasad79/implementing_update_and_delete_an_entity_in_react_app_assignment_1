@@ -2,9 +2,10 @@ import UpdateItem from "./components/UpdateItem";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-function App({change}) {
+function App() {
     const [items, setItems] = useState([]);
     const [idstate, setidstate] = useState("");
+     const [change,setChange]=useState(true)
     
     useEffect(() => {
         const fetchItems = async () => {
@@ -18,6 +19,8 @@ function App({change}) {
         fetchItems();
     }, [change]);
 
+    
+
 
     const Delete =async(id)=>{
       const response = await axios.delete("http://localhost:8000/doors/"+id)
@@ -29,7 +32,7 @@ function App({change}) {
 
             <h2>Door List</h2>
 
-            <UpdateItem  id={idstate} />
+            <UpdateItem  id={idstate}  x={[setChange,change]} />
             <ul>
                 {items&& (
                     items.map((task) => (
